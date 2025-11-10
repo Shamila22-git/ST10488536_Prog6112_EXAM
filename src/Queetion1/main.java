@@ -10,6 +10,39 @@ package Queetion1;
  */
 public class main {
     public static void main (String[] args){
-        System.out.println("Hi");
+       
+     // ProductSalesReport.java
+
+   
+        // Two-dimensional array holding local retail company product sales data for two (2) years
+        int[][] sales = {
+            {300, 150,700}, //first year
+            {250, 200,600}, // second year
+            
+        };
+        
+      ProductSales product = new ProductSales(2200,367,700,150);
+      
+        // Displaying the report
+        System.out.println("PRODUCT SALES REPORT - 2025");
+        System.out.println("-------------------------------");
+        System.out.println("Year\tQ1\tQ2\tQ3");
+        System.out.println("-------------------------------");
+        System.out.println("YEAR 1\t" + sales[0][0] + "\t" + sales[0][1]+ "     "+sales[0][2]);
+        System.out.println("YEAR 2\t" + sales[1][0] + "\t" + sales[1][0]+ "     "+sales[1][2]);
+        
+        System.out.println("-------------------------------");
+        
+        // the actual report
+        System.out.println("PRODUCT SALES REPORT- 2025");
+        System.out.println("**************************");
+        System.out.println("Total sales  : "+product.calculateTotalSales());
+        System.out.println("Average sales: "+product.calculateAverageSales());
+        System.out.println("Maximum sale : "+product.findMaximumSales());
+        System.out.println("Minimum sale: "+product.findMinimumSales());
+        System.out.println("**************************");
+        
     }
+    
+    
 }
