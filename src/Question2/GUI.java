@@ -7,7 +7,25 @@ package Question2;
 /**
  *
  * @author lab_services_student
+ * 
  */
+import java.awt.BorderLayout;
+import java.io.PrintWriter;
+import java.util.Scanner;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+
 public class GUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUI.class.getName());
@@ -15,10 +33,93 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
-    public GUI() {
-        initComponents();
+   
+public class NewClass {
+    public class ProductSalesApp extends JFrame {
+    private JTable table;
+    private DefaultTableModel tableModel;
+    private JTextArea textArea;
+    private JLabel yearsLabel;
+    private final int SALES_LIMIT = 500;
+
+    public ProductSalesApp() {
+        setTitle("Product Sales Application");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        // Menu bar
+        JMenuBar menuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("File");
+        JMenu toolsMenu = new JMenu("Tools");
+
+        JMenuItem loadItem = new JMenuItem("Load Product Data");
+        JMenuItem saveItem = new JMenuItem("Save Product Data");
+        JMenuItem exitItem = new JMenuItem("Exit");
+
+        JMenuItem editItem = new JMenuItem("Edit");
+        JMenuItem clearItem = new JMenuItem("Clear");
+
+        fileMenu.add(loadItem);
+        fileMenu.add(saveItem);
+        fileMenu.addSeparator();
+        fileMenu.add(exitItem);
+
+        toolsMenu.add(editItem);
+        toolsMenu.add(clearItem);
+
+        menuBar.add(fileMenu);
+        menuBar.add(toolsMenu);
+        setJMenuBar(menuBar);
+
+        // Table setup
+        String[] columns = {"Product", "Sales for year 1", "Sales for year 2"};
+        tableModel = new DefaultTableModel(columns, 0);
+        table = new JTable(tableModel);
+        JScrollPane tableScroll = new JScrollPane(table);
+        add(tableScroll, BorderLayout.CENTER);
+
+        // Bottom panel: text area + labels
+        JPanel bottomPanel = new JPanel(new BorderLayout());
+        textArea = new JTextArea(8, 50);
+        textArea.setEditable(false);
+        bottomPanel.add(new JScrollPane(textArea), BorderLayout.CENTER);
+
+        JPanel infoPanel = new JPanel();
+        yearsLabel = new JLabel("Number of years represented: 0");
+        infoPanel.add(yearsLabel);
+        bottomPanel.add(infoPanel, BorderLayout.SOUTH);
+
+        add(bottomPanel, BorderLayout.SOUTH);
+
+        // Load initial sample data
+        loadSampleData();
+
+        // Action listeners
+        loadItem.addActionListener(e -> loadSampleData());
+        saveItem.addActionListener(e -> saveData());
+        exitItem.addActionListener(e -> System.exit(0));
+        clearItem.addActionListener(e -> jMenuItem5.clearProcessedData());
+        editItem.addActionListener(e -> JOptionPane.showMessageDialog(this, "Edit functionality not implemented."));
+
+        updateProcessedText();
     }
 
+    private void loadSampleData() {
+        tableModel.addRow(new Object[]{"Microphone", 300, 250});
+        tableModel.addRow(new Object[]{"Speakers", 150, 200});
+        tableModel.addRow(new Object[]{"Mixing Desk", 700, 600});
+        updateYearsLabel();
+    }
+
+    private void clearProcessedData() {
+        textArea.setText("");
+        JOptionPane.showMessageDialog(this, "Processed data cleared.");
+    }
+private void 
+    }
+    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,42 +129,207 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        tableModel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        textArea = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        loadData = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        tableModel.setBackground(new java.awt.Color(255, 204, 204));
+
         jLabel1.setText("Product Sales Application");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+        jButton1.setText("Load Product Data");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Save Product Data");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        textArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textAreaActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Year Processed :");
+
+        javax.swing.GroupLayout tableModelLayout = new javax.swing.GroupLayout(tableModel);
+        tableModel.setLayout(tableModelLayout);
+        tableModelLayout.setHorizontalGroup(
+            tableModelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(tableModelLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(tableModelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textArea)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        tableModelLayout.setVerticalGroup(
+            tableModelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tableModelLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(0, 284, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(textArea, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(0, 34, Short.MAX_VALUE))
         );
+
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("Exit");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Tools");
+
+        loadData.setText("Load Product data");
+        loadData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadDataActionPerformed(evt);
+            }
+        });
+        jMenu2.add(loadData);
+
+        jMenuItem4.setText("save product data");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
+
+        jMenuItem5.setText("clear");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(130, 130, 130)
+                .addComponent(tableModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(212, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tableModel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+   
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void loadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadDataActionPerformed
+   JFileChooser fc = new JFileChooser();
+        if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            try (Scanner scanner = new Scanner(fc.getSelectedFile())) {
+                tableModel.setRowCount(0);
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    String[] parts = line.split(",");
+                    if (parts.length == 3) {
+                        tableModel.addRow(new Object[]{parts[0].trim(),
+Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim())});
+                    }
+                }
+                updateYearsLabel();
+                updateProcessedText();
+                JOptionPane.showMessageDialog(this, "Data loaded successfully.");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error loading file: " 
++ ex.getMessage());
+            }
+        }
+    
+           
+    }//GEN-LAST:event_loadDataActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+JFileChooser fc = new JFileChooser();
+        if (fc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            try (PrintWriter writer = new PrintWriter(fc.getSelectedFile())) {
+                for (int i = 0; i < tableModel.getRowCount(); i++) {
+                    writer.println(tableModel.getValueAt(i, 0) + "," +
+                                   tableModel.getValueAt(i, 1) + "," +
+                                   tableModel.getValueAt(i, 2));
+                }
+                JOptionPane.showMessageDialog(this, "Data saved successfully.");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error saving file: " + 
+ex.getMessage());
+            }
+        }       
+    
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    textArea.setText("");
+        JOptionPane.showMessageDialog(this, "Processed data cleared.");
+    }
+
+    }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        
+       
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void textAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAreaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textAreaActionPerformed
+            
     /**
      * @param args the command line arguments
      */
@@ -90,7 +356,19 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem loadData;
+    private javax.swing.JPanel tableModel;
+    private javax.swing.JTextField textArea;
     // End of variables declaration//GEN-END:variables
-}
+
