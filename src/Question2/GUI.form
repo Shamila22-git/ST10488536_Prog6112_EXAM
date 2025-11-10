@@ -66,6 +66,10 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -112,7 +116,7 @@
                       <Component id="jButton1" pref="264" max="32767" attributes="0"/>
                       <Component id="jButton2" max="32767" attributes="0"/>
                       <Component id="textArea" max="32767" attributes="0"/>
-                      <Component id="jLabel2" max="32767" attributes="0"/>
+                      <Component id="table" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="45" max="32767" attributes="0"/>
               </Group>
@@ -129,7 +133,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="textArea" min="-2" pref="111" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="table" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="34" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -162,7 +166,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textAreaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="table">
           <Properties>
             <Property name="text" type="java.lang.String" value="Year Processed :"/>
           </Properties>

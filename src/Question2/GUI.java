@@ -135,7 +135,7 @@ private void
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         textArea = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        table = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -147,6 +147,14 @@ private void
         jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         tableModel.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -172,7 +180,7 @@ private void
             }
         });
 
-        jLabel2.setText("Year Processed :");
+        table.setText("Year Processed :");
 
         javax.swing.GroupLayout tableModelLayout = new javax.swing.GroupLayout(tableModel);
         tableModel.setLayout(tableModelLayout);
@@ -185,7 +193,7 @@ private void
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textArea)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(table, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         tableModelLayout.setVerticalGroup(
@@ -199,7 +207,7 @@ private void
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(textArea, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(table)
                 .addGap(0, 34, Short.MAX_VALUE))
         );
 
@@ -322,13 +330,65 @@ ex.getMessage());
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+         DefaultTableModel model =(DefaultTableModel) tableClients.getModel();
+        Vector <Vector> tableData ;
         
+        //saving the object to a file 
+        try {
+            FileOutputStream file = new FileOutputStream("file.bin");
+//the one in brackets is the name of the new file we are saving it to.
+            ObjectOutputStream output = new ObjectOutputStream(file);
+            
+            output.writeObject(tableData);
+            
+            output.close();
+            file.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+                            
+
        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void textAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAreaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textAreaActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+ try{
+        FileInputStream file = new FileInputStream("file.bin");
+        //file.bin is the name of the file!
+        ObjectInputStream input = new ObjectInputStream(file);
+        
+}
+        catch (Exception e){
+          e.printStackTrace();
+}          
+       
+    }//GEN-LAST:event_formWindowOpened
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+         //to close the application 
+        DefaultTableModel model =(DefaultTableModel) tableClients.getModel();
+       
+        //saving the object to a file 
+        try{
+            FileOutputStream file = new FileOutputStream("file.bin");
+//the one in brackets is the name of the new file we are saving it to.
+            ObjectOutputStream output = new ObjectOutputStream(file);
+            
+            output.writeObject(tableData);
+            
+            output.close();
+            file.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_formWindowClosing
             
     /**
      * @param args the command line arguments
@@ -359,7 +419,6 @@ ex.getMessage());
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -368,6 +427,7 @@ ex.getMessage());
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem loadData;
+    private javax.swing.JLabel table;
     private javax.swing.JPanel tableModel;
     private javax.swing.JTextField textArea;
     // End of variables declaration//GEN-END:variables
